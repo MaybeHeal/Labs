@@ -21,10 +21,12 @@ def currency_exchange():
 # Я не нашёл где в запросе отображается количество товара на складе, поэтому вывожу количество оценок товара
 def shop_info():
     response = requests.get('https://fakestoreapi.com/products').json()
+    item_list = []
     price_list = []
     rate_list = []
     rate_count_list = []
     for item in response:
+        item_list.append(item['title'])
         price_list.append(item['price'])
         rate_list.append(item['rating']['rate'])
         rate_count_list.append(item['rating']['count'])
@@ -36,6 +38,10 @@ def shop_info():
 
     print('\nТовары с самым большим количеством оценок:')
     shop_help_func(response, rate_count_list)
+
+    with open('item_titles.txt', mode='w', encoding='utf-8') as file:
+        for item in sorted(item_list):
+            file.write(item + '\n')
 
 
 def shop_help_func(response, item_list):
@@ -50,7 +56,6 @@ def organisation_search():
     # org_name = 'ВятГУ'
     response = requests.get(f'https://search-maps.yandex.ru/v1/?text={org_name}&type=biz&lang=ru_RU&'
                             f'apikey=85a285fc-11d2-4ba9-a37d-8154903e726c').json()
-    print(response)
     for item in response['features']:
         print(f'Название: {item['properties']['name']}')
         print(f'Адрес: {item['properties']['description']}')
