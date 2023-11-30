@@ -46,8 +46,8 @@ def shop_info():
 
 def shop_help_func(response, item_list):
     max_count = max(item_list)
-    max_count_indx = [x[0] for x in enumerate(item_list) if x[1] == max_count]
-    for i in max_count_indx:
+    max_count_index = [x[0] for x in enumerate(item_list) if x[1] == max_count]
+    for i in max_count_index:
         print(response[i]['title'])
 
 

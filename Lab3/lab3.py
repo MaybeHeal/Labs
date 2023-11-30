@@ -1,7 +1,6 @@
 import random
 import string
 import pickle
-import struct
 
 
 def string_generator():
@@ -44,7 +43,7 @@ def task3():
 
     with open('task3.bin', mode='rb') as file:
         # Не очень понял как мне определить точку выхода из цикла в бинарном виде,
-        # поэтому просто по ошибке вылетаем с цикла
+        # поэтому просто по ошибке вылетаем с цикла, знаю что не правильно написано, но работает
         try:
             while True:
                 a = pickle.load(file)
