@@ -48,6 +48,7 @@ class Hero(Unit):
 
     def level_up(self, count):
         self.__lvl += count
+        print(f'Уровень Героя (id: {self.unit_id}) повышен до {self.level}')
 
     def add_warrior_in_team(self, warrior):
         Unit.hero_team_list[self.unit_team_id].append(warrior)
@@ -88,6 +89,9 @@ def warrior_team_creator(count, hero_list):
 def main_scenario():
     hero_list = hero_creator(3)
     warrior_team_list = warrior_team_creator(15, hero_list=hero_list)
+
+    for hero in hero_list:
+        print(f'Численность команды Героя (id: {hero.unit_id}): {len(Unit.hero_team_list[hero.unit_team_id])}')
 
     warrior_team_size_list = dict()
     for key, value in warrior_team_list.items():
