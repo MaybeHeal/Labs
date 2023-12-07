@@ -48,7 +48,7 @@ def task3():
             while True:
                 a = pickle.load(file)
                 print(a)
-        except:
+        except EOFError:
             pass
 
 
